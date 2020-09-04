@@ -1,4 +1,7 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Fish.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Fish.vs" type="Script" id=2]
 
 [node name="Level1" type="Spatial"]
 
@@ -14,3 +17,10 @@ use_collision = true
 width = 1.80519
 height = 0.689325
 depth = 3.89436
+
+[node name="Fish" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.834982, 0, -0.550277, 0, 1, 0, 0.550277, 0, 0.834982, 0, 3.298, 0 )
+script = ExtResource( 2 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.59998, 0.386965, -0.700202, 0.0632092, 0.895429, 0.440695, 0.797514, 0.220149, -0.561699, -3.16309, 4.91354, -2.99635 )

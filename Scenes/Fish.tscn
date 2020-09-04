@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.229638, 0.166418, 0.348412 )
+
+[node name="Fish" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.29801, 0 )
+
+[node name="Body" type="CSGBox" parent="."]
+width = 0.419374
+height = 0.312609
+depth = 0.679229
+
+[node name="Collider" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
