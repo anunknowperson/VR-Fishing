@@ -1,0 +1,16 @@
+[gd_scene format=2]
+
+[node name="Level1" type="Spatial"]
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0221875, 0 )
+width = 15.9693
+height = 0.15029
+depth = 73.4144
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.358568, 0 )
+use_collision = true
+width = 1.80519
+height = 0.689325
+depth = 3.89436
