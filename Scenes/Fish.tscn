@@ -7,7 +7,7 @@
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.107408, 0.295164, 0.665599 )
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=4]
 albedo_texture = ExtResource( 2 )
 
 [sub_resource type="Animation" id=3]
@@ -47,8 +47,9 @@ shape = SubResource( 1 )
 
 [node name="Body" type="MeshInstance" parent="."]
 transform = Transform( -0.143177, -0.00365022, 0.263604, 0.000296737, 0.299969, 0.00431494, -0.263629, 0.00232007, -0.143158, 1.71653, -0.461007, 0.275189 )
+material_override = SubResource( 4 )
 mesh = ExtResource( 3 )
-material/0 = SubResource( 2 )
+material/0 = null
 material/1 = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

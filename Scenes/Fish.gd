@@ -7,6 +7,10 @@ var beckon_pos = Vector3(0,0,0)
 var direction = Vector3(0,0,0)
 
 func _ready():
+	var clone = $Body.material_override.duplicate()
+	clone.albedo_color=Color(rand_range(0,255)/255,rand_range(0,255)/255,rand_range(0,255)/255)
+	$Body.material_override = clone
+	
 	$AnimationPlayer.play("Fish")
 
 func _physics_process(delta):
