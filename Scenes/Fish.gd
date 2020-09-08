@@ -1,7 +1,7 @@
 extends KinematicBody
 
-export (float) var SPEED = 2
-export (float) var VIEW  = 10
+export (float) var SPEED = 2.5
+export (float) var VIEW  = 50
 
 var beckon_pos = Vector3(0,0,0)
 var direction = Vector3(0,0,0)

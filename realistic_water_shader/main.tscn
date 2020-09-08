@@ -1,0 +1,276 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://realistic_water_shader/water_env.tres" type="Environment" id=1]
+[ext_resource path="res://realistic_water_shader/art/ground/Ground.material" type="Material" id=2]
+[ext_resource path="res://realistic_water_shader/art/rock/Rock.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://realistic_water_shader/art/rock/Rock.material" type="Material" id=4]
+[ext_resource path="res://realistic_water_shader/art/water/Water.material" type="Material" id=5]
+[ext_resource path="res://realistic_water_shader/art/boat/Boat.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://realistic_water_shader/art/boat/Boat.material" type="Material" id=7]
+[ext_resource path="res://realistic_water_shader/main.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Fishing rod.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Part.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Spawner.tscn" type="PackedScene" id=11]
+[ext_resource path="res://realistic_water_shader/art/seaweed/Seaweed.material" type="Material" id=12]
+[ext_resource path="res://realistic_water_shader/art/seaweed/Seaweed_Process.material" type="Material" id=13]
+[ext_resource path="res://realistic_water_shader/art/seaweed/Seaweed.obj" type="ArrayMesh" id=14]
+
+[sub_resource type="PlaneMesh" id=1]
+material = ExtResource( 2 )
+size = Vector2( 128, 128 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 2.72383, 1.35925, 2.04719 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 3.9444, 2.43425, 3.28258 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 1.75967, 1.50917, 1.45849 )
+
+[sub_resource type="PlaneMesh" id=5]
+material = ExtResource( 5 )
+size = Vector2( 128, 128 )
+subdivide_width = 256
+subdivide_depth = 256
+
+[sub_resource type="CylinderShape" id=6]
+radius = 7.62499
+
+[node name="Main" type="Node"]
+script = ExtResource( 8 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 1 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
+transform = Transform( 0.757659, 0.503287, -0.415517, 0.633934, -0.41613, 0.651893, 0.15518, -0.757323, -0.634335, -0.0487633, 16.0945, -0.736719 )
+light_color = Color( 0.972549, 0.941176, 0.870588, 1 )
+light_energy = 2.0
+light_specular = 1.0
+shadow_enabled = true
+
+[node name="Ground" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.92602, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Rocks" type="Spatial" parent="."]
+
+[node name="Rock1" type="MeshInstance" parent="Rocks"]
+transform = Transform( -8.45299, 0, -5.58266, 2.97955, 3.42473, -4.51149, 1.88735, -5.40659, -2.85774, 7.50167, -5.0984, -10.4137 )
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 4 )
+
+[node name="Rock2" type="MeshInstance" parent="Rocks"]
+transform = Transform( -2.8816, -5.7108, -4.00212, -1.81075, 6.86413, -3.69354, 5.42011, -0.742982, -3.36166, 6.45473, -4.63299, -10.4137 )
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 4 )
+
+[node name="Rock3" type="MeshInstance" parent="Rocks"]
+transform = Transform( 5.03286, 4.74675, 2.03339, -3.8662, 6.87239, 1.3841, -0.82637, -3.2435, 5.90844, 4.00962, -4.56572, -7.62493 )
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 4 )
+
+[node name="Rock4" type="MeshInstance" parent="Rocks"]
+transform = Transform( 4.66895, -6.12027, 0.223132, 2.07828, 3.50138, 5.51233, -3.85248, -5.52849, 3.24413, 5.82676, -4.66432, 0.29593 )
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 4 )
+
+[node name="Rock5" type="MeshInstance" parent="Rocks"]
+transform = Transform( 5.23414, -5.01891, 0.843787, -3.27192, -7.27928, -1.79441, 1.69064, 1.45062, -6.08507, 4.00962, -2.45323, 0.482225 )
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 4 )
+
+[node name="Rock6" type="MeshInstance" parent="Rocks"]
+transform = Transform( 3.43575, 13.907, -10.6975, 5.90904, -3.61487, 20.2069, 11.3021, -8.72794, 1.17681, 12.5626, -4.59778, 1.11524 )
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 4 )
+
+[node name="Rock7" type="MeshInstance" parent="Rocks"]
+transform = Transform( 11.0718, -14.3148, 1.33504, -7.79142, -8.05962, -3.145, 2.59114, 2.22326, -9.32619, 9.34487, -5.03868, 2.31981 )
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 4 )
+
+[node name="Rock8" type="MeshInstance" parent="Rocks"]
+transform = Transform( -2.04565, -13.8528, 2.07388, -1.40415, -1.85515, -9.70419, 13.5591, -8.91484, 0.423051, 6.97818, -5.2834, 4.81487 )
+mesh = ExtResource( 3 )
+material/0 = ExtResource( 4 )
+
+[node name="StaticBody" type="StaticBody" parent="Rocks"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.34081, -2.6704, -10.3686 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Rocks/StaticBody"]
+transform = Transform( 0.715851, 0, 0.698253, 0, 1, 0, -0.698253, 0, 0.715851, -4.76837e-07, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2" type="StaticBody" parent="Rocks"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0865, -2.02988, 1.74727 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Rocks/StaticBody2"]
+shape = SubResource( 3 )
+
+[node name="StaticBody3" type="StaticBody" parent="Rocks"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9884, -1.82708, 0.339721 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Rocks/StaticBody3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.414994, 0 )
+shape = SubResource( 4 )
+
+[node name="Water" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.10169, 0 )
+mesh = SubResource( 5 )
+material/0 = ExtResource( 5 )
+
+[node name="RodJoints" type="Position3D" parent="."]
+transform = Transform( 1, 4.65661e-09, 2.98023e-08, -5.7742e-08, 1, 3.72529e-09, 2.98023e-08, -1.30385e-08, 1, 0, 0, 0 )
+
+[node name="Part" parent="RodJoints" instance=ExtResource( 10 )]
+
+[node name="Part2" parent="RodJoints" instance=ExtResource( 10 )]
+transform = Transform( 1, -5.55112e-17, 0, -1.11022e-16, 1, 0, 0, 0, 1, 10.0811, -1.9024, -6.3441 )
+
+[node name="Part3" parent="RodJoints" instance=ExtResource( 10 )]
+transform = Transform( 1, -5.55112e-17, 0, -1.11022e-16, 1, 0, 0, 0, 1, 10.0811, -2.31026, -6.3441 )
+
+[node name="Part4" parent="RodJoints" instance=ExtResource( 10 )]
+transform = Transform( 1, -5.55112e-17, 0, -1.11022e-16, 1, 0, 0, 0, 1, 10.0811, -2.71246, -6.3441 )
+
+[node name="Part5" parent="RodJoints" instance=ExtResource( 10 )]
+transform = Transform( 1, -5.55112e-17, 0, -1.11022e-16, 1, 0, 0, 0, 1, 10.0811, -3.11594, -6.3441 )
+
+[node name="Part6" parent="RodJoints" instance=ExtResource( 10 )]
+transform = Transform( 1, -5.55112e-17, 0, -1.11022e-16, 1, 0, 0, 0, 1, 10.0811, -3.51977, -6.3441 )
+
+[node name="Part7" parent="RodJoints" instance=ExtResource( 10 )]
+transform = Transform( 1, -5.55112e-17, 0, -1.11022e-16, 1, 0, 0, 0, 1, 10.0811, -3.92376, -6.3441 )
+
+[node name="SmallArea" type="Area" parent="RodJoints/Part7"]
+
+[node name="CollisionShape" type="CollisionShape" parent="RodJoints/Part7/SmallArea"]
+shape = SubResource( 6 )
+
+[node name="BigArea" type="Area" parent="RodJoints/Part7"]
+
+[node name="CollisionShape" type="CollisionShape" parent="RodJoints/Part7/BigArea"]
+shape = SubResource( 6 )
+
+[node name="Boat" type="MeshInstance" parent="."]
+transform = Transform( -0.760883, -0.0825737, 0.643614, -0.0898595, 0.995721, 0.021516, -0.642637, -0.0414636, -0.765048, 10.0811, -1.98067, -4.84802 )
+mesh = ExtResource( 6 )
+material/0 = ExtResource( 7 )
+
+[node name="ARVROrigin" type="ARVROrigin" parent="Boat"]
+transform = Transform( -0.760883, -0.0898594, -0.642637, -0.0825739, 0.995722, -0.0414637, 0.643614, 0.021516, -0.765048, -0.0151911, 0.168315, 0.00363445 )
+world_scale = 1.3
+
+[node name="ARVRCamera" type="ARVRCamera" parent="Boat/ARVROrigin"]
+
+[node name="ARVRController" type="ARVRController" parent="Boat/ARVROrigin"]
+
+[node name="CSGBox" type="CSGBox" parent="Boat/ARVROrigin/ARVRController"]
+visible = false
+width = 0.1
+height = 0.1
+depth = 0.1
+
+[node name="ARVRController2" type="ARVRController" parent="Boat/ARVROrigin"]
+transform = Transform( 1, -5.55112e-17, 0, -1.11022e-16, 1, 0, 0, 0, 1, 0, 1.07896, 0 )
+controller_id = 2
+
+[node name="CSGBox" type="CSGBox" parent="Boat/ARVROrigin/ARVRController2"]
+visible = false
+width = 0.1
+height = 0.1
+depth = 0.1
+
+[node name="Spatial" parent="Boat/ARVROrigin/ARVRController2" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 0.34202, -0.939693, 0, 0.939692, 0.34202, 0, 0, 0 )
+
+[node name="Generic6DOFJoint" type="Generic6DOFJoint" parent="Boat/ARVROrigin/ARVRController2/Spatial"]
+transform = Transform( 1, 4.44089e-15, 5.68434e-14, -2.4869e-14, 0.342021, 0.939693, -5.77316e-14, -0.939693, 0.34202, -0.00393867, -1.58991, -0.00154543 )
+nodes/node_a = NodePath("..")
+nodes/node_b = NodePath("../../../../../RodJoints/Part")
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
+
+[node name="Generic6DOFJoint2" type="Generic6DOFJoint" parent="Boat/ARVROrigin/ARVRController2/Spatial"]
+transform = Transform( 1, 1.5099e-14, 9.9476e-14, -4.44089e-14, 0.342021, 0.939693, -1.00364e-13, -0.939693, 0.34202, 0.00109768, -1.73801, 0.398055 )
+nodes/node_a = NodePath("../../../../../RodJoints/Part")
+nodes/node_b = NodePath("../../../../../RodJoints/Part2")
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
+
+[node name="Generic6DOFJoint3" type="Generic6DOFJoint" parent="Boat/ARVROrigin/ARVRController2/Spatial"]
+transform = Transform( 1, 1.86517e-14, 1.13687e-13, -4.44089e-14, 0.342021, 0.939693, -1.1724e-13, -0.939693, 0.34202, 0.00109768, -1.87742, 0.781074 )
+nodes/node_a = NodePath("../../../../../RodJoints/Part2")
+nodes/node_b = NodePath("../../../../../RodJoints/Part3")
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
+
+[node name="Generic6DOFJoint4" type="Generic6DOFJoint" parent="Boat/ARVROrigin/ARVRController2/Spatial"]
+transform = Transform( 1, 2.22045e-14, 1.27898e-13, -4.44089e-14, 0.342021, 0.939693, -1.33227e-13, -0.939693, 0.34202, 0.00109768, -2.01562, 1.16076 )
+nodes/node_a = NodePath("../../../../../RodJoints/Part3")
+nodes/node_b = NodePath("../../../../../RodJoints/Part4")
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
+
+[node name="Generic6DOFJoint5" type="Generic6DOFJoint" parent="Boat/ARVROrigin/ARVRController2/Spatial"]
+transform = Transform( 1, 2.57572e-14, 1.42109e-13, -4.61853e-14, 0.342021, 0.939693, -1.53655e-13, -0.939693, 0.34202, 0.00109768, -2.1531, 1.5385 )
+nodes/node_a = NodePath("../../../../../RodJoints/Part4")
+nodes/node_b = NodePath("../../../../../RodJoints/Part5")
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
+
+[node name="Generic6DOFJoint6" type="Generic6DOFJoint" parent="Boat/ARVROrigin/ARVRController2/Spatial"]
+transform = Transform( 1, 2.93099e-14, 1.56319e-13, -4.61853e-14, 0.342021, 0.939693, -1.69642e-13, -0.939693, 0.34202, 0.00109768, -2.29064, 1.91637 )
+nodes/node_a = NodePath("../../../../../RodJoints/Part5")
+nodes/node_b = NodePath("../../../../../RodJoints/Part6")
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
+
+[node name="Generic6DOFJoint7" type="Generic6DOFJoint" parent="Boat/ARVROrigin/ARVRController2/Spatial"]
+transform = Transform( 1, 3.64153e-14, 1.84741e-13, -5.15143e-14, 0.342021, 0.939693, -1.96287e-13, -0.939693, 0.34202, 0.00109768, -2.42887, 2.29616 )
+nodes/node_a = NodePath("../../../../../RodJoints/Part5")
+nodes/node_b = NodePath("../../../../../RodJoints/Part6")
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
+
+[node name="Seaweed" type="Particles" parent="Boat/ARVROrigin"]
+transform = Transform( 1, -3.72529e-08, 2.38419e-07, 2.22045e-15, 1, 9.31324e-09, 2.38419e-07, 1.30385e-08, 1, -10.0811, 3.81164, 6.09801 )
+material_override = ExtResource( 12 )
+amount = 10000
+explosiveness = 1.0
+visibility_aabb = AABB( -16, -16, -16, 32, 32, 32 )
+local_coords = false
+draw_order = 2
+process_material = ExtResource( 13 )
+draw_pass_1 = ExtResource( 14 )
+
+[node name="Spawners" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0522258, 0 )
+
+[node name="Spawner" parent="Spawners" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0699, -2.89358, -13.6542 )
+
+[node name="Spawner2" parent="Spawners" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6989, -2.89358, -21.7177 )
+
+[node name="Spawner3" parent="Spawners" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.8139, -2.89358, -2.84476 )
+
+[node name="Spawner4" parent="Spawners" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.6141, -2.89358, -19.1988 )
+
+[node name="Spawner5" parent="Spawners" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.92751, -2.89358, -23.6956 )
+
+[node name="Spawner6" parent="Spawners" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1319, -2.89358, -2.64326 )
