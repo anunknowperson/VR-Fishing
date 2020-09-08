@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/tuna.obj-7825d5aaf5b6b6884a75d5759847e4f4.mesh"
+
+[deps]
+
+files=[ "res://.import/tuna.obj-7825d5aaf5b6b6884a75d5759847e4f4.mesh" ]
+
+source_file="res://Models/tuna.obj"
+dest_files=[ "res://.import/tuna.obj-7825d5aaf5b6b6884a75d5759847e4f4.mesh", "res://.import/tuna.obj-7825d5aaf5b6b6884a75d5759847e4f4.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
