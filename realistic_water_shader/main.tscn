@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://realistic_water_shader/water_env.tres" type="Environment" id=1]
 [ext_resource path="res://realistic_water_shader/art/ground/Ground.material" type="Material" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://realistic_water_shader/art/seaweed/Seaweed.material" type="Material" id=12]
 [ext_resource path="res://realistic_water_shader/art/seaweed/Seaweed_Process.material" type="Material" id=13]
 [ext_resource path="res://realistic_water_shader/art/seaweed/Seaweed.obj" type="ArrayMesh" id=14]
+[ext_resource path="res://realistic_water_shader/BigArea.gd" type="Script" id=15]
+[ext_resource path="res://realistic_water_shader/SmallArea.gd" type="Script" id=16]
 
 [sub_resource type="PlaneMesh" id=1]
 material = ExtResource( 2 )
@@ -34,8 +36,13 @@ size = Vector2( 128, 128 )
 subdivide_width = 256
 subdivide_depth = 256
 
+[sub_resource type="CylinderShape" id=7]
+radius = 11.535
+height = 7.58501
+
 [sub_resource type="CylinderShape" id=6]
-radius = 7.62499
+radius = 0.341129
+height = 4.49151
 
 [node name="Main" type="Node"]
 script = ExtResource( 8 )
@@ -122,37 +129,60 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.10169, 0 )
 mesh = SubResource( 5 )
 material/0 = ExtResource( 5 )
 
+[node name="BigArea" type="Area" parent="."]
+transform = Transform( 1, 4.65661e-09, 2.98023e-08, -5.7742e-08, 1, 3.72529e-09, 2.98023e-08, -1.30385e-08, 1, 10.0811, -3.92376, -6.3441 )
+gravity = 0.0
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 15 )
+
+[node name="CollisionShape" type="CollisionShape" parent="BigArea"]
+shape = SubResource( 7 )
+
 [node name="RodJoints" type="Position3D" parent="."]
 transform = Transform( 1, 4.65661e-09, 2.98023e-08, -5.7742e-08, 1, 3.72529e-09, 2.98023e-08, -1.30385e-08, 1, 0, 0, 0 )
 
 [node name="Part" parent="RodJoints" instance=ExtResource( 10 )]
+collision_layer = 0
+collision_mask = 0
 
 [node name="Part2" parent="RodJoints" instance=ExtResource( 10 )]
 transform = Transform( 1, -5.55112e-17, 0, -1.11022e-16, 1, 0, 0, 0, 1, 10.0811, -1.9024, -6.3441 )
+collision_layer = 0
+collision_mask = 0
 
 [node name="Part3" parent="RodJoints" instance=ExtResource( 10 )]
 transform = Transform( 1, -5.55112e-17, 0, -1.11022e-16, 1, 0, 0, 0, 1, 10.0811, -2.31026, -6.3441 )
+collision_layer = 0
+collision_mask = 0
 
 [node name="Part4" parent="RodJoints" instance=ExtResource( 10 )]
 transform = Transform( 1, -5.55112e-17, 0, -1.11022e-16, 1, 0, 0, 0, 1, 10.0811, -2.71246, -6.3441 )
+collision_layer = 0
+collision_mask = 0
 
 [node name="Part5" parent="RodJoints" instance=ExtResource( 10 )]
 transform = Transform( 1, -5.55112e-17, 0, -1.11022e-16, 1, 0, 0, 0, 1, 10.0811, -3.11594, -6.3441 )
+collision_layer = 0
+collision_mask = 0
 
 [node name="Part6" parent="RodJoints" instance=ExtResource( 10 )]
 transform = Transform( 1, -5.55112e-17, 0, -1.11022e-16, 1, 0, 0, 0, 1, 10.0811, -3.51977, -6.3441 )
+collision_layer = 0
+collision_mask = 0
 
 [node name="Part7" parent="RodJoints" instance=ExtResource( 10 )]
 transform = Transform( 1, -5.55112e-17, 0, -1.11022e-16, 1, 0, 0, 0, 1, 10.0811, -3.92376, -6.3441 )
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 1.0
 
 [node name="SmallArea" type="Area" parent="RodJoints/Part7"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 16 )
 
 [node name="CollisionShape" type="CollisionShape" parent="RodJoints/Part7/SmallArea"]
-shape = SubResource( 6 )
-
-[node name="BigArea" type="Area" parent="RodJoints/Part7"]
-
-[node name="CollisionShape" type="CollisionShape" parent="RodJoints/Part7/BigArea"]
 shape = SubResource( 6 )
 
 [node name="Boat" type="MeshInstance" parent="."]
@@ -169,7 +199,6 @@ world_scale = 1.3
 [node name="ARVRController" type="ARVRController" parent="Boat/ARVROrigin"]
 
 [node name="CSGBox" type="CSGBox" parent="Boat/ARVROrigin/ARVRController"]
-visible = false
 width = 0.1
 height = 0.1
 depth = 0.1
@@ -191,56 +220,119 @@ transform = Transform( 1, 0, 0, 0, 0.34202, -0.939693, 0, 0.939692, 0.34202, 0, 
 transform = Transform( 1, 4.44089e-15, 5.68434e-14, -2.4869e-14, 0.342021, 0.939693, -5.77316e-14, -0.939693, 0.34202, -0.00393867, -1.58991, -0.00154543 )
 nodes/node_a = NodePath("..")
 nodes/node_b = NodePath("../../../../../RodJoints/Part")
+linear_limit_x/softness = 0.01
+linear_limit_x/restitution = 0.01
+linear_limit_x/damping = 0.01
 angular_limit_x/enabled = false
+linear_limit_y/softness = 0.01
+linear_limit_y/restitution = 0.01
+linear_limit_y/damping = 0.01
 angular_limit_y/enabled = false
+linear_limit_z/softness = 0.01
+linear_limit_z/restitution = 0.01
+linear_limit_z/damping = 0.01
 angular_limit_z/enabled = false
 
 [node name="Generic6DOFJoint2" type="Generic6DOFJoint" parent="Boat/ARVROrigin/ARVRController2/Spatial"]
 transform = Transform( 1, 1.5099e-14, 9.9476e-14, -4.44089e-14, 0.342021, 0.939693, -1.00364e-13, -0.939693, 0.34202, 0.00109768, -1.73801, 0.398055 )
 nodes/node_a = NodePath("../../../../../RodJoints/Part")
 nodes/node_b = NodePath("../../../../../RodJoints/Part2")
+linear_limit_x/softness = 0.01
+linear_limit_x/restitution = 0.01
+linear_limit_x/damping = 0.01
 angular_limit_x/enabled = false
+linear_limit_y/softness = 0.01
+linear_limit_y/restitution = 0.01
+linear_limit_y/damping = 0.01
 angular_limit_y/enabled = false
+linear_limit_z/softness = 0.01
+linear_limit_z/restitution = 0.01
+linear_limit_z/damping = 0.01
 angular_limit_z/enabled = false
 
 [node name="Generic6DOFJoint3" type="Generic6DOFJoint" parent="Boat/ARVROrigin/ARVRController2/Spatial"]
 transform = Transform( 1, 1.86517e-14, 1.13687e-13, -4.44089e-14, 0.342021, 0.939693, -1.1724e-13, -0.939693, 0.34202, 0.00109768, -1.87742, 0.781074 )
 nodes/node_a = NodePath("../../../../../RodJoints/Part2")
 nodes/node_b = NodePath("../../../../../RodJoints/Part3")
+linear_limit_x/softness = 0.01
+linear_limit_x/restitution = 0.01
+linear_limit_x/damping = 0.01
 angular_limit_x/enabled = false
+linear_limit_y/softness = 0.01
+linear_limit_y/restitution = 0.01
+linear_limit_y/damping = 0.01
 angular_limit_y/enabled = false
+linear_limit_z/softness = 0.01
+linear_limit_z/restitution = 0.01
+linear_limit_z/damping = 0.01
 angular_limit_z/enabled = false
 
 [node name="Generic6DOFJoint4" type="Generic6DOFJoint" parent="Boat/ARVROrigin/ARVRController2/Spatial"]
 transform = Transform( 1, 2.22045e-14, 1.27898e-13, -4.44089e-14, 0.342021, 0.939693, -1.33227e-13, -0.939693, 0.34202, 0.00109768, -2.01562, 1.16076 )
 nodes/node_a = NodePath("../../../../../RodJoints/Part3")
 nodes/node_b = NodePath("../../../../../RodJoints/Part4")
+linear_limit_x/softness = 0.01
+linear_limit_x/restitution = 0.01
+linear_limit_x/damping = 0.01
 angular_limit_x/enabled = false
+linear_limit_y/softness = 0.01
+linear_limit_y/restitution = 0.01
+linear_limit_y/damping = 0.01
 angular_limit_y/enabled = false
+linear_limit_z/softness = 0.01
+linear_limit_z/restitution = 0.01
+linear_limit_z/damping = 0.01
 angular_limit_z/enabled = false
 
 [node name="Generic6DOFJoint5" type="Generic6DOFJoint" parent="Boat/ARVROrigin/ARVRController2/Spatial"]
 transform = Transform( 1, 2.57572e-14, 1.42109e-13, -4.61853e-14, 0.342021, 0.939693, -1.53655e-13, -0.939693, 0.34202, 0.00109768, -2.1531, 1.5385 )
 nodes/node_a = NodePath("../../../../../RodJoints/Part4")
 nodes/node_b = NodePath("../../../../../RodJoints/Part5")
+linear_limit_x/softness = 0.01
+linear_limit_x/restitution = 0.01
+linear_limit_x/damping = 0.01
 angular_limit_x/enabled = false
+linear_limit_y/softness = 0.01
+linear_limit_y/restitution = 0.01
+linear_limit_y/damping = 0.01
 angular_limit_y/enabled = false
+linear_limit_z/softness = 0.01
+linear_limit_z/restitution = 0.01
+linear_limit_z/damping = 0.01
 angular_limit_z/enabled = false
 
 [node name="Generic6DOFJoint6" type="Generic6DOFJoint" parent="Boat/ARVROrigin/ARVRController2/Spatial"]
 transform = Transform( 1, 2.93099e-14, 1.56319e-13, -4.61853e-14, 0.342021, 0.939693, -1.69642e-13, -0.939693, 0.34202, 0.00109768, -2.29064, 1.91637 )
 nodes/node_a = NodePath("../../../../../RodJoints/Part5")
 nodes/node_b = NodePath("../../../../../RodJoints/Part6")
+linear_limit_x/softness = 0.01
+linear_limit_x/restitution = 0.01
+linear_limit_x/damping = 0.01
 angular_limit_x/enabled = false
+linear_limit_y/softness = 0.01
+linear_limit_y/restitution = 0.01
+linear_limit_y/damping = 0.01
 angular_limit_y/enabled = false
+linear_limit_z/softness = 0.01
+linear_limit_z/restitution = 0.01
+linear_limit_z/damping = 0.01
 angular_limit_z/enabled = false
 
 [node name="Generic6DOFJoint7" type="Generic6DOFJoint" parent="Boat/ARVROrigin/ARVRController2/Spatial"]
 transform = Transform( 1, 3.64153e-14, 1.84741e-13, -5.15143e-14, 0.342021, 0.939693, -1.96287e-13, -0.939693, 0.34202, 0.00109768, -2.42887, 2.29616 )
-nodes/node_a = NodePath("../../../../../RodJoints/Part5")
-nodes/node_b = NodePath("../../../../../RodJoints/Part6")
+nodes/node_a = NodePath("../../../../../RodJoints/Part6")
+nodes/node_b = NodePath("../../../../../RodJoints/Part7")
+linear_limit_x/softness = 0.01
+linear_limit_x/restitution = 0.01
+linear_limit_x/damping = 0.01
 angular_limit_x/enabled = false
+linear_limit_y/softness = 0.01
+linear_limit_y/restitution = 0.01
+linear_limit_y/damping = 0.01
 angular_limit_y/enabled = false
+linear_limit_z/softness = 0.01
+linear_limit_z/restitution = 0.01
+linear_limit_z/damping = 0.01
 angular_limit_z/enabled = false
 
 [node name="Seaweed" type="Particles" parent="Boat/ARVROrigin"]
@@ -255,7 +347,6 @@ process_material = ExtResource( 13 )
 draw_pass_1 = ExtResource( 14 )
 
 [node name="Spawners" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0522258, 0 )
 
 [node name="Spawner" parent="Spawners" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.0699, -2.89358, -13.6542 )
@@ -271,6 +362,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.6141, -2.89358, -19.1988 )
 
 [node name="Spawner5" parent="Spawners" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.92751, -2.89358, -23.6956 )
-
-[node name="Spawner6" parent="Spawners" instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1319, -2.89358, -2.64326 )
+[connection signal="body_entered" from="BigArea" to="BigArea" method="_on_BigArea_body_entered"]
+[connection signal="body_entered" from="RodJoints/Part7/SmallArea" to="RodJoints/Part7/SmallArea" method="_on_SmallArea_body_entered"]

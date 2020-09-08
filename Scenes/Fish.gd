@@ -12,9 +12,11 @@ func _ready():
 	$Body.material_override = clone
 	
 	$AnimationPlayer.play("Fish")
+	
+	randomPoint()
 
 func _physics_process(delta):
-	if translation.distance_to(beckon_pos) > SPEED*2:
+	if translation.distance_to(beckon_pos) > SPEED*0.5:
 		beckon(direction)
 	else:
 		randomPoint()
@@ -25,5 +27,12 @@ func beckon(point):
 func randomPoint():
 	beckon_pos.x = rand_range(VIEW*-1, VIEW)
 	beckon_pos.z = rand_range(VIEW*-1, VIEW)
+	
+	direction = (beckon_pos-translation).normalized() * SPEED
+	look_at(beckon_pos, Vector3(0, 1, 0))
+
+func OnMeDeceived(pos):
+	print(pos)
+	beckon_pos = pos
 	direction = (beckon_pos-translation).normalized() * SPEED
 	look_at(beckon_pos, Vector3(0, 1, 0))
