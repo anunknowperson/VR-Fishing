@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/oculus_rifts_controller_left.obj-c71c72caaa02c0d3b6bcd909adc5e85b.mesh"
+
+[deps]
+
+files=[ "res://.import/oculus_rifts_controller_left.obj-c71c72caaa02c0d3b6bcd909adc5e85b.mesh" ]
+
+source_file="res://Models/oculus_rifts_controller_left.obj"
+dest_files=[ "res://.import/oculus_rifts_controller_left.obj-c71c72caaa02c0d3b6bcd909adc5e85b.mesh", "res://.import/oculus_rifts_controller_left.obj-c71c72caaa02c0d3b6bcd909adc5e85b.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
