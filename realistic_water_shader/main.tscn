@@ -61,35 +61,35 @@ size = Vector2( 1.5, 0.5 )
 params_blend_mode = 2
 albedo_texture = ExtResource( 22 )
 
-[sub_resource type="BoxShape" id=12]
+[sub_resource type="BoxShape" id=10]
 extents = Vector3( 0.310947, 0.212705, 1 )
 
-[sub_resource type="PlaneMesh" id=13]
+[sub_resource type="PlaneMesh" id=11]
 flip_faces = true
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=12]
 size = 60
 outline_size = 3
 font_data = ExtResource( 23 )
 
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=13]
 size = 32
 outline_size = 1
 font_data = ExtResource( 23 )
 
-[sub_resource type="SpatialMaterial" id=16]
+[sub_resource type="SpatialMaterial" id=14]
 albedo_texture = ExtResource( 19 )
 normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 18 )
 
-[sub_resource type="BoxShape" id=17]
+[sub_resource type="BoxShape" id=15]
 extents = Vector3( 0.1, 0.1, 0.1 )
 
-[sub_resource type="BoxShape" id=18]
+[sub_resource type="BoxShape" id=16]
 extents = Vector3( 2.31311, 0.320126, 1 )
 
-[sub_resource type="BoxShape" id=19]
+[sub_resource type="BoxShape" id=17]
 extents = Vector3( 0.30795, 0.438728, 1 )
 
 [node name="Main" type="Node"]
@@ -174,6 +174,7 @@ shape = SubResource( 4 )
 
 [node name="Water" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.10169, 0 )
+visible = false
 mesh = SubResource( 5 )
 material/0 = ExtResource( 5 )
 
@@ -252,11 +253,11 @@ collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="Boat/Fish Analyzer/Area"]
 transform = Transform( 1, -4.09782e-08, 0, -5.40167e-08, 1, 0, -1.78814e-07, -2.6077e-08, 1, -0.0748994, 0.830002, 0.017931 )
-shape = SubResource( 12 )
+shape = SubResource( 10 )
 
 [node name="Display" type="MeshInstance" parent="Boat/Fish Analyzer"]
 transform = Transform( -2.08616e-07, 1, -1.21072e-08, 1.67638e-07, 0, 0.5, 1, 1.49012e-07, -8.19564e-08, 0.502723, 1.01876, 0.0226574 )
-mesh = SubResource( 13 )
+mesh = SubResource( 11 )
 material/0 = null
 script = ExtResource( 24 )
 gui_viewport_path = NodePath("Viewport")
@@ -277,7 +278,7 @@ margin_left = 149.831
 margin_top = 13.4306
 margin_right = 617.831
 margin_bottom = 74.4306
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Анализатор"
 align = 1
@@ -302,7 +303,7 @@ margin_left = 274.0
 margin_top = 115.0
 margin_right = 715.0
 margin_bottom = 342.0
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 autowrap = true
 
@@ -318,7 +319,7 @@ script = ExtResource( 21 )
 [node name="oculus_rifts_controller_left" type="MeshInstance" parent="Boat/ARVROrigin/ARVRController"]
 transform = Transform( 1.3, -6.9278e-15, -3.09944e-07, 2.88658e-15, 1.3, -1.69501e-08, 3.09944e-07, 1.69501e-08, 1.3, 0, 0, 0 )
 mesh = ExtResource( 20 )
-material/0 = SubResource( 16 )
+material/0 = SubResource( 14 )
 
 [node name="Area" type="Area" parent="Boat/ARVROrigin/ARVRController"]
 collision_layer = 3
@@ -326,7 +327,7 @@ collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="Boat/ARVROrigin/ARVRController/Area"]
 transform = Transform( 1, 4.4409e-16, 0, 4.23516e-22, 1, 0, 0, 0, 1, 0, 0, 0.0817232 )
-shape = SubResource( 17 )
+shape = SubResource( 15 )
 
 [node name="ARVRController2" type="ARVRController" parent="Boat/ARVROrigin"]
 transform = Transform( 1, -5.55112e-17, 0, -1.11022e-16, 1, 0, 0, 0, 1, 0, 1.07896, 0 )
@@ -458,6 +459,7 @@ angular_limit_z/enabled = false
 [node name="Seaweed" type="Particles" parent="Boat/ARVROrigin"]
 transform = Transform( 1, -3.72529e-08, 2.38419e-07, 2.22045e-15, 1, 9.31324e-09, 2.38419e-07, 1.30385e-08, 1, -10.0811, 3.81164, 6.09801 )
 material_override = ExtResource( 12 )
+emitting = false
 amount = 10000
 explosiveness = 1.0
 visibility_aabb = AABB( -16, -16, -16, 32, 32, 32 )
@@ -472,15 +474,15 @@ collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="Boat/BoatPhysics"]
 transform = Transform( 1, -3.72529e-09, -1.19209e-07, 9.31323e-09, 1, -7.45058e-09, 0, 0, 1, 0, 0, 0 )
-shape = SubResource( 18 )
+shape = SubResource( 16 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="Boat/BoatPhysics"]
 transform = Transform( 1, 3.72529e-09, -2.08616e-07, 9.31323e-09, 1, -1.49012e-08, 2.98023e-08, 0, 1, 1.24453, 0.116925, -0.213413 )
-shape = SubResource( 19 )
+shape = SubResource( 17 )
 
 [node name="CollisionShape3" type="CollisionShape" parent="Boat/BoatPhysics"]
 transform = Transform( 1, 5.21541e-08, -9.23872e-07, 9.31323e-09, 0.999999, -5.96046e-08, 2.98023e-08, -1.11759e-08, 0.999999, -1.93807, 0.0474043, 0.0451956 )
-shape = SubResource( 19 )
+shape = SubResource( 17 )
 
 [node name="Spawners" type="Spatial" parent="."]
 

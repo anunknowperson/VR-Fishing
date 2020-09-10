@@ -16,6 +16,11 @@ func _ready():
 	randomPoint()
 
 func _physics_process(delta):
+	if translation.x > 15:
+		queue_free()
+	if translation.z > 15:
+		queue_free()
+
 	if translation.distance_to(beckon_pos) > SPEED*0.5:
 		beckon(direction)
 	else:
@@ -32,7 +37,6 @@ func randomPoint():
 	look_at(beckon_pos, Vector3(0, 1, 0))
 
 func OnMeDeceived(pos):
-	print(pos)
 	beckon_pos = pos
 	direction = (beckon_pos-translation).normalized() * SPEED
 	look_at(beckon_pos, Vector3(0, 1, 0))
