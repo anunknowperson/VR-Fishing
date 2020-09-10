@@ -15,8 +15,10 @@ func _ready():
 
 func _physics_process(delta):
 	if is_holding and current_object != null:
-		current_object.transform = get_global_transform()
+		current_object.translation = get_global_transform().origin
+		current_object.rotation = get_global_transform().basis.get_euler()
 		current_object.scale = Vector3(0.5, 0.5, 0.5)
+		
 		current_object.linear_velocity = Vector3()
 
 func _on_Area_body_entered(body):

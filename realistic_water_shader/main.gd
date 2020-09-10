@@ -31,11 +31,11 @@ func _on_Spatial_CATCH():
 	catched = true
 	
 	var f = fakefish.instance()
-	add_child(f)
+	$FakeFishs.add_child(f)
 		
-	f.get_child(1).material_override = body.get_child(1).material_override
-		
-	f.translation = body.translation
+	f.get_child(1).get_child(0).material_override = body.get_child(1).material_override
+	f.transform = body.get_global_transform()
+	#f.get_node("Spatial").scale = body.transform.basis.get_scale()
 		
 	var vect = ($Boat/ARVROrigin/ARVRController.get_global_transform().origin - f.translation).normalized() * 2.5
 		

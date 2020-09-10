@@ -19,7 +19,9 @@ script = ExtResource( 3 )
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial"]
 transform = Transform( 0.231311, 0, -0.191038, 0, 0.3, 0, 0.191038, 0, 0.231311, -1.73952, -0.367798, 0.226106 )
 layers = 3
 material_override = SubResource( 2 )
